@@ -54,7 +54,7 @@ builder.Services.AddCors(options =>
         options.AddPolicy(name: "NgOrigins",
             policy =>
             {
-                policy.WithOrigins("http://localhost:4200", "http://127.0.0.1:3000", "http://localhost:5173").AllowAnyMethod().AllowAnyHeader();
+                policy.WithOrigins("http://localhost:4200", "http://127.0.0.1:3000", "http://localhost:5173", "http://localhost:53129").AllowAnyMethod().AllowAnyHeader();
             })
     
 );
