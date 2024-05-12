@@ -67,3 +67,51 @@ CREATE TABLE public."user" (
 	phonenumber varchar NULL,
 	CONSTRAINT "User_pkey" PRIMARY KEY (id)
 );
+
+create table public.work_item_type
+(
+    id                  integer           not null
+        constraint work_item_type_pk
+            primary key,
+    process_ref         integer default 1 not null,
+    work_item_type_name varchar
+);
+
+alter table public.work_item_type
+    owner to postgres;
+
+create table public.work_item_state
+(
+    id                   integer not null
+        constraint work_item_state_pk
+            primary key,
+    work_item_type_ref   integer not null
+        constraint work_item_state_work_item_type_id_fk
+            references public.work_item_type,
+    work_item_state_name varchar not null
+);
+
+alter table public.work_item_state
+    owner to postgres;
+
+
+create table public.work_item
+(
+    id                  uuid    not null
+        constraint work_item_pk
+            primary key,
+    work_item_type_ref  integer not null
+        constraint work_item_work_item_type_id_fk
+            references public.work_item_type,
+    work_item_state_ref integer not null
+        constraint work_item_work_item_state_id_fk
+            references public.work_item_state,
+    assignee            uuid,
+    title               varchar,
+    description         varchar,
+    priority            integer
+);
+
+alter table public.work_item
+    owner to postgres;
+
