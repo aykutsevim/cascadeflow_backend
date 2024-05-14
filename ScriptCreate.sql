@@ -103,7 +103,8 @@ create table public.work_item
     work_item_type_ref  integer not null
         constraint work_item_work_item_type_id_fk
             references public.work_item_type,
-    work_item_state_ref integer not null
+    work_item_state_ref
+	 integer not null
         constraint work_item_work_item_state_id_fk
             references public.work_item_state,
     assignee            uuid,
