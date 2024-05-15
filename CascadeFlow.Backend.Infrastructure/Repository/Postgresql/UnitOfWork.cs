@@ -9,14 +9,25 @@ namespace CascadeFlow.Backend.Infrastructure.Repository.Postgresql
 {
     internal class UnitOfWork : IUnitOfWork
     {
-        public UnitOfWork(IUserRepository userRepository, IDynamicFormRepository dynamicFormRepository, IDynamicFormDataRepository dynamicFormsData)
+        public UnitOfWork(IUserRepository userRepository, 
+            IWorkItemRepository workItemRepository,
+            IWorkItemStateRepository workItemStateRepository,
+            IWorkItemTypeRepository workItemTypeRepository,
+            IDynamicFormRepository dynamicFormRepository, 
+            IDynamicFormDataRepository dynamicFormsData)
         {
             Users = userRepository;
             DynamicForms = dynamicFormRepository;
             DynamicFormsData = dynamicFormsData;
+            WorkItems = workItemRepository;
+            WorkItemTypes = workItemTypeRepository;
+            WorkItemStates = workItemStateRepository;
         }
         public IUserRepository Users { get; }
         public IDynamicFormRepository DynamicForms { get; }
         public IDynamicFormDataRepository DynamicFormsData { get; }
+        public IWorkItemRepository WorkItems { get; }
+        public IWorkItemTypeRepository WorkItemTypes { get; }
+        public IWorkItemStateRepository WorkItemStates { get; }
     }
 }

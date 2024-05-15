@@ -15,9 +15,9 @@ namespace CascadeFlow.Backend.Core.Model
         public int WorkItemTypeRef { get; set; }
 
         [ForeignKey("WorkItemTypeRef")]
-        public WorkItemType WorkItemType { get; set; }
+        public required WorkItemType WorkItemType { get; set; }
 
         [Column("work_item_state_name")]
-        public string WorkItemStateName { get; set; }
+        public required string WorkItemStateName { get; set; }
     }
 }

@@ -11,6 +11,9 @@ namespace CascadeFlow.Backend.Infrastructure
             services.AddTransient<IDynamicFormRepository, DynamicFormRepository>();
             services.AddTransient<IDynamicFormDataRepository, DynamicFormDataRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IWorkItemRepository, WorkItemRepository>();
+            services.AddTransient<IWorkItemTypeRepository, WorkItemTypeRepository>();
+            services.AddTransient<IWorkItemStateRepository, WorkItemStateRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
     }

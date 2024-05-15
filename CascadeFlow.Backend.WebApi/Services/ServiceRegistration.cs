@@ -8,6 +8,7 @@ namespace CascadeFlow.Backend.WebApi.Services
         public static void AddServiceLayer(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IWorkItemService, WorkItemService>();
             services.AddScoped<IDynamicFormDataService, DynamicFormDataService>();
             services.AddScoped<IDynamicFormService, DynamicFormService>();
 

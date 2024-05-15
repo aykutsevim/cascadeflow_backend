@@ -11,5 +11,8 @@ namespace CascadeFlow.Backend.Application.Interfaces
         IUserRepository Users { get; }
         IDynamicFormRepository DynamicForms { get; }
         IDynamicFormDataRepository DynamicFormsData { get; }
+        IWorkItemRepository WorkItems { get; }
+        IWorkItemTypeRepository WorkItemTypes { get; }
+        IWorkItemStateRepository WorkItemStates { get; }
     }
 }
