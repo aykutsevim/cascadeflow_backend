@@ -68,51 +68,51 @@ CREATE TABLE public."user" (
 	CONSTRAINT "User_pkey" PRIMARY KEY (id)
 );
 
-create table public.work_item_type
+create table public.workitemtype
 (
     id                  integer           not null
-        constraint work_item_type_pk
+        constraint workitemtypepk
             primary key,
-    process_ref         integer default 1 not null,
-    work_item_type_name varchar
+    processref         integer default 1 not null,
+    workitemtypename varchar
 );
 
-alter table public.work_item_type
+alter table public.workitemtype
     owner to postgres;
 
-create table public.work_item_state
+create table public.workitemstate
 (
     id                   integer not null
-        constraint work_item_state_pk
+        constraint workitemstatepk
             primary key,
-    work_item_type_ref   integer not null
-        constraint work_item_state_work_item_type_id_fk
-            references public.work_item_type,
-    work_item_state_name varchar not null
+    workitemtyperef   integer not null
+        constraint workitemstateworkitemtypeidfk
+            references public.workitemtype,
+    workitemstatename varchar not null
 );
 
-alter table public.work_item_state
+alter table public.workitemstate
     owner to postgres;
 
 
-create table public.work_item
+create table public.workitem
 (
     id                  uuid    not null
-        constraint work_item_pk
+        constraint workitempk
             primary key,
-    work_item_type_ref  integer not null
-        constraint work_item_work_item_type_id_fk
-            references public.work_item_type,
-    work_item_state_ref
+    workitemtyperef  integer not null
+        constraint workitemworkitemtypeidfk
+            references public.workitemtype,
+    workitemstateref
 	 integer not null
-        constraint work_item_work_item_state_id_fk
-            references public.work_item_state,
+        constraint workitemworkitemstateidfk
+            references public.workitemstate,
     assignee            uuid,
     title               varchar,
     description         varchar,
     priority            integer
 );
 
-alter table public.work_item
+alter table public.workitem
     owner to postgres;
 

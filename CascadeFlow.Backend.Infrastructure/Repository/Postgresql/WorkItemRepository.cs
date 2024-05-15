@@ -13,7 +13,7 @@ namespace CascadeFlow.Backend.Infrastructure.Repository.Postgresql
 {
     public class WorkItemRepository : IWorkItemRepository
     {
-        private const string TABLE_NAME = "public.work_item";
+        private const string TABLE_NAME = "public.workitem";
 
         private readonly IConfiguration configuration;
 
@@ -26,7 +26,7 @@ namespace CascadeFlow.Backend.Infrastructure.Repository.Postgresql
         {
             entity.Id = Guid.NewGuid();
 
-            var sql = $"insert into {TABLE_NAME} (id, work_item_type_ref, work_item_state_ref, assignee, title, description, priority) " +
+            var sql = $"insert into {TABLE_NAME} (id, workitemtyperef, workitemstateref, assignee, title, description, priority) " +
                 $" values (@Id, @WorkItemTypeRef, @WorkItemStateRef, @Assignee, @Title, @Description, @Priority)";
 
             using var connection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection"));
@@ -40,7 +40,7 @@ namespace CascadeFlow.Backend.Infrastructure.Repository.Postgresql
         public async Task<int> UpdateAsync(WorkItem entity)
         {
             var sql = $"UPDATE {TABLE_NAME} " +
-                $"SET work_item_type_ref = @WorkItemTypeRef, work_item_state_ref = @WorkItemStateRef, assignee = @Assignee, title = @Title, description = @Description, " +
+                $"SET workitemtyperef = @WorkItemTypeRef, workitemstateref = @WorkItemStateRef, assignee = @Assignee, title = @Title, description = @Description, " +
                 $"priority = @Priority " +
                 $"WHERE Id = @Id";
 

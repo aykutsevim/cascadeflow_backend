@@ -24,56 +24,56 @@ INSERT INTO public."user" (id,username,passwordhash,passwordsalt,refreshtoken,re
 	 ('094991dd-5106-4028-93b5-db37cccb25fb','username',decode('F5E0238B77DC5FDD076BC2B0156791494233DC5BE973C4C4CC1F403C8AB4C0AFD6B02ACDBD330A2157E95B877F58601D2AD79DA01F87D9A55B6B6FE5825DB2F3','hex'),decode('0A8C4A8802E895CCDAAA75BE46732165050319DF248F9349F653D2A9CFE19B15C3CA447D8914E18211E044ECC31B34105BC87C7622160BDB7C431E6E5CF45FCA769C988AE29288FAB0AE01F8B2E15A6EF860C12BA953F2290F9BE604D5E5930A34E4BBE94BDBFC39538FCCECC346AADAF74445427E276866F3EA3EB70AC19BD2','hex'),'FBe1uRAaVNajFeUwBcGiVDkL3p8IQy1+gsOT4/xnwcd2d+sYUPHrEm0QYVNNrDtgsBOS7yS4m1qMurz0/6OKDg==','2023-03-01 01:36:47.548919+03','2023-03-08 01:36:47.548919+03','2023-03-01 00:41:00.380964+03','2023-03-01 01:36:47.549215+03','Aykut','Sevim','as@ella.com','05322566565');
 
 
-INSERT INTO public.work_item_type (id, process_ref, work_item_type_name)
+INSERT INTO public.workitemtype (id, processref, workitemtypename)
 VALUES (1::integer, DEFAULT, 'Task'::varchar);
 
-INSERT INTO public.work_item_type (id, process_ref, work_item_type_name)
+INSERT INTO public.workitemtype (id, processref, workitemtypename)
 VALUES (2::integer, DEFAULT, 'Bug'::varchar);
 
-INSERT INTO public.work_item_type (id, process_ref, work_item_type_name)
+INSERT INTO public.workitemtype (id, processref, workitemtypename)
 VALUES (3::integer, DEFAULT, 'New Feature'::varchar);
 
-INSERT INTO public.work_item_state (id, work_item_type_ref, work_item_state_name)
+INSERT INTO public.workitemstate (id, workitemtyperef, workitemstatename)
 VALUES (1::integer, 1::integer, 'To Do'::varchar);
 
-INSERT INTO public.work_item_state (id, work_item_type_ref, work_item_state_name)
+INSERT INTO public.workitemstate (id, workitemtyperef, workitemstatename)
 VALUES (2::integer, 1::integer, 'In Progress'::varchar);
 
-INSERT INTO public.work_item_state (id, work_item_type_ref, work_item_state_name)
+INSERT INTO public.workitemstate (id, workitemtyperef, workitemstatename)
 VALUES (3::integer, 1::integer, 'Done'::varchar);
 
-INSERT INTO public.work_item_state (id, work_item_type_ref, work_item_state_name)
+INSERT INTO public.workitemstate (id, workitemtyperef, workitemstatename)
 VALUES (4::integer, 2::integer, 'To Do'::varchar);
 
-INSERT INTO public.work_item_state (id, work_item_type_ref, work_item_state_name)
+INSERT INTO public.workitemstate (id, workitemtyperef, workitemstatename)
 VALUES (5::integer, 2::integer, 'In Progress'::varchar);
 
-INSERT INTO public.work_item_state (id, work_item_type_ref, work_item_state_name)
+INSERT INTO public.workitemstate (id, workitemtyperef, workitemstatename)
 VALUES (6::integer, 2::integer, 'Done'::varchar);
 
-INSERT INTO public.work_item_state (id, work_item_type_ref, work_item_state_name)
+INSERT INTO public.workitemstate (id, workitemtyperef, workitemstatename)
 VALUES (7::integer, 3::integer, 'Proposed'::varchar);
 
-INSERT INTO public.work_item_state (id, work_item_type_ref, work_item_state_name)
+INSERT INTO public.workitemstate (id, workitemtyperef, workitemstatename)
 VALUES (8::integer, 3::integer, 'To Do (Approved)'::varchar);
 
-INSERT INTO public.work_item_state (id, work_item_type_ref, work_item_state_name)
+INSERT INTO public.workitemstate (id, workitemtyperef, workitemstatename)
 VALUES (9::integer, 3::integer, 'In Progress'::varchar);
 
-INSERT INTO public.work_item_state (id, work_item_type_ref, work_item_state_name)
+INSERT INTO public.workitemstate (id, workitemtyperef, workitemstatename)
 VALUES (10::integer, 3::integer, 'Test'::varchar);
 
-INSERT INTO public.work_item_state (id, work_item_type_ref, work_item_state_name)
+INSERT INTO public.workitemstate (id, workitemtyperef, workitemstatename)
 VALUES (11::integer, 3::integer, 'Done'::varchar);
 
-INSERT INTO public.work_item (id, work_item_type_ref, work_item_state_ref, assignee, title, description, priority)
+INSERT INTO public.workitem (id, workitemtyperef, workitemstateref, assignee, title, description, priority)
 VALUES ('19f09fe4-8b5e-4e06-bd51-94c6e889db53'::uuid, 1::integer, 1::integer, null::uuid, 'Work Item 1'::varchar,
         'Detailed description'::varchar, 1::integer);
 
-INSERT INTO public.work_item (id, work_item_type_ref, work_item_state_ref, assignee, title, description, priority)
+INSERT INTO public.workitem (id, workitemtyperef, workitemstateref, assignee, title, description, priority)
 VALUES ('1fabf2ad-4418-481c-b74a-74f5b428240b'::uuid, 1::integer, 2::integer, null::uuid, 'Work Item 2'::varchar,
         'Detailed description'::varchar, 2::integer);
 
-INSERT INTO public.work_item (id, work_item_type_ref, work_item_state_ref, assignee, title, description, priority)
+INSERT INTO public.workitem (id, workitemtyperef, workitemstateref, assignee, title, description, priority)
 VALUES ('4262612d-d927-4a5a-8db1-5ffacb6ac608'::uuid, 2::integer, 1::integer, null::uuid, 'Work Item 3'::varchar,
         'Detailed description'::varchar, 1::integer);

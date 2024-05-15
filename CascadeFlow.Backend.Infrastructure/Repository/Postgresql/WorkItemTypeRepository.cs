@@ -13,7 +13,7 @@ namespace CascadeFlow.Backend.Infrastructure.Repository.Postgresql
 {
     public class WorkItemTypeRepository : IWorkItemTypeRepository
     {
-        private const string TABLE_NAME = "public.work_item_type";
+        private const string TABLE_NAME = "public.workitemtype";
 
         private readonly IConfiguration configuration;
 
