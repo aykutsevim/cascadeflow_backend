@@ -11,15 +11,12 @@ namespace CascadeFlow.Backend.Core.Model // Replace "YourNamespace" with your de
         public Guid Id { get; set; }
 
         public int WorkItemTypeRef { get; set; }
-
+        public required string WorkItemTypeName { get; set; }
         public int WorkItemStateRef { get; set; }
-
+        public required string WorkItemStateName { get; set; }
         public Guid? Assignee { get; set; }
-
         public required string Title { get; set; }
-
         public string? Description { get; set; }
-
         public int Priority { get; set; }
     }
 }

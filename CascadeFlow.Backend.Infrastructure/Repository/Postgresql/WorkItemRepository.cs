@@ -14,6 +14,8 @@ namespace CascadeFlow.Backend.Infrastructure.Repository.Postgresql
     public class WorkItemRepository : IWorkItemRepository
     {
         private const string TABLE_NAME = "public.workitem";
+        private const string TABLE_NAME_TYPE = "public.workitemtype";
+        private const string TABLE_NAME_STATE = "public.workitemstate";
 
         private readonly IConfiguration configuration;
 
@@ -66,11 +68,15 @@ namespace CascadeFlow.Backend.Infrastructure.Repository.Postgresql
 
         public async Task<IReadOnlyList<WorkItem>> GetAllAsync()
         {
-            var sql = $"SELECT * FROM {TABLE_NAME}";
+            var sql = $"SELECT {TABLE_NAME}.*, {TABLE_NAME_TYPE}.workitemtypename, {TABLE_NAME_STATE}.workitemstatename  FROM {TABLE_NAME} "
+                + $" JOIN {TABLE_NAME_TYPE} ON {TABLE_NAME}.workitemtyperef = {TABLE_NAME_TYPE}.Id"
+                + $" JOIN {TABLE_NAME_STATE} ON {TABLE_NAME}.workitemstateref = {TABLE_NAME_STATE}.Id";
+
             using var connection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection"));
             connection.Open();
 
             var result = await connection.QueryAsync<WorkItem>(sql);
+
             return result.ToList();
         }
 
