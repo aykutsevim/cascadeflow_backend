@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime;
 
 namespace CascadeFlow.Backend.Core.Model // Replace "YourNamespace" with your desired namespace
 {
@@ -18,5 +19,7 @@ namespace CascadeFlow.Backend.Core.Model // Replace "YourNamespace" with your de
         public required string Title { get; set; }
         public string? Description { get; set; }
         public int Priority { get; set; }
+        public Guid ProjectRef { get; set; }
+        public Guid WorkItemRef { get; set; }
     }
 }
