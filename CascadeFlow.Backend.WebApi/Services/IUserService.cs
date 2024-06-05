@@ -9,5 +9,6 @@ namespace CascadeFlow.Backend.WebApi.Services
         Task<User> GetByNameAsync(string username);
         Task<int> UpdateAsync(User entity);
         Task<IReadOnlyList<User>> GetAllAsync();
+        Guid GetUserTenant();
     }
 }

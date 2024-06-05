@@ -6,8 +6,11 @@ namespace CascadeFlow.Backend.WebApi.Services
     public class WorkItemService : IWorkItemService
     {
         private readonly IUnitOfWork unitOfWork;
-        public WorkItemService(IUnitOfWork unitOfWork) { 
+        private readonly IUserService userService;
+
+        public WorkItemService(IUnitOfWork unitOfWork, IUserService userService) { 
             this.unitOfWork = unitOfWork;
+            this.userService = userService;
         }
         public async Task<IReadOnlyList<WorkItem>> GetAllWorkItemsAsync()
         {
@@ -23,5 +26,6 @@ namespace CascadeFlow.Backend.WebApi.Services
         {
             return await unitOfWork.WorkItemTypes.GetAllAsync();
         }
+
     }
 }

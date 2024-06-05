@@ -25,6 +25,17 @@ namespace CascadeFlow.Backend.WebApi.Services
             return result;
         }
 
+        public Guid GetUserTenant()
+        {
+            Guid result = Guid.Empty;
+            if (_httpContextAccessor.HttpContext != null)
+            {
+                result = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.GroupSid) ?? String.Empty);
+            }
+            return result;
+        }
+
+
         public async Task<int> AddAsync(User entity)
         {
             return await unitOfWork.Users.AddAsync(entity);

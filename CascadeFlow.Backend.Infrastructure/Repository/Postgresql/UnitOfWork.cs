@@ -13,12 +13,14 @@ namespace CascadeFlow.Backend.Infrastructure.Repository.Postgresql
             IWorkItemRepository workItemRepository,
             IWorkItemStateRepository workItemStateRepository,
             IWorkItemTypeRepository workItemTypeRepository,
-            IDynamicFormRepository dynamicFormRepository, 
+            IDynamicFormRepository dynamicFormRepository,
+            IProjectRepository projectRepository,
             IDynamicFormDataRepository dynamicFormsData)
         {
             Users = userRepository;
             DynamicForms = dynamicFormRepository;
             DynamicFormsData = dynamicFormsData;
+            Projects = projectRepository;
             WorkItems = workItemRepository;
             WorkItemTypes = workItemTypeRepository;
             WorkItemStates = workItemStateRepository;
@@ -26,6 +28,7 @@ namespace CascadeFlow.Backend.Infrastructure.Repository.Postgresql
         public IUserRepository Users { get; }
         public IDynamicFormRepository DynamicForms { get; }
         public IDynamicFormDataRepository DynamicFormsData { get; }
+        public IProjectRepository Projects { get; }
         public IWorkItemRepository WorkItems { get; }
         public IWorkItemTypeRepository WorkItemTypes { get; }
         public IWorkItemStateRepository WorkItemStates { get; }
