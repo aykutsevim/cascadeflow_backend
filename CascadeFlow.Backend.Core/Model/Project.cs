@@ -11,5 +11,6 @@ namespace CascadeFlow.Backend.Core.Model
         public Guid Id { get; set; }
         public string ProjectName { get; set; } = string.Empty;
         public Guid TenantRef { get; set; }
+        public Guid IdenticonHashable { get; set; }
     }
 }

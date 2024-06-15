@@ -78,7 +78,8 @@ namespace CascadeFlow.Backend.WebApi.Controllers
 
             var result = new LoginResultDto {
                 Username = user.Username,
-                Token = token 
+                Token = token ,
+                AvatarHashable = user.AvatarHashable.ToString()
             };
 
             return Ok(result);

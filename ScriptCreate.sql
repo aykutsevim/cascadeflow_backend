@@ -73,7 +73,7 @@ create table public.tenant
 alter table public.tenant
     owner to postgres;
 
-create table public."user"
+create table "user"
 (
     id                    uuid not null
         constraint "User_pkey"
@@ -92,25 +92,31 @@ create table public."user"
     phonenumber           varchar,
     tenantref             uuid not null
         constraint user_tenant_id_fk
-            references public.tenant
+            references tenant,
+    avatarhashable        uuid not null
 );
 
-alter table public."user"
+alter table "user"
     owner to postgres;
 
-create table public.project
+
+
+create table project
 (
-    id          uuid    not null
+    id                uuid    not null
         constraint project_pk
             primary key,
-    projectname varchar not null,
-    tenantref   uuid    not null
+    projectname       varchar not null,
+    tenantref         uuid    not null
         constraint project_tenant_id_fk
-            references public.tenant
+            references tenant,
+    identiconhashable uuid    not null
 );
 
-alter table public.project
+alter table project
     owner to postgres;
+
+
 
 create table public.workitem
 (

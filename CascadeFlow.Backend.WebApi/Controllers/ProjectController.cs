@@ -29,5 +29,14 @@ namespace CascadeFlow.Backend.WebApi.Controllers
             return Ok(projects);
         }
 
+        [HttpGet("identicon/{projectId}")]
+        public async Task<ActionResult<IReadOnlyList<Project>>> GetProjectIdenticon(Guid projectId)
+        {
+            var identicon = await projectService.GetProjectIdenticon(projectId);
+
+            return File(identicon, "image/svg+xml");
+        }
+
+
     }
 }

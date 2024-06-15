@@ -1,6 +1,7 @@
 using CascadeFlow.Backend.Infrastructure;
 using CascadeFlow.Backend.WebApi.Mapping;
 using CascadeFlow.Backend.WebApi.Services;
+using Jdenticon.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -68,6 +69,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseJdenticon();
 
 app.UseCors("NgOrigins");
 

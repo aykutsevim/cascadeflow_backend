@@ -13,6 +13,7 @@
         public string Email { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
         public Guid TenantRef { get; set; }
+        public Guid AvatarHashable { get; set; }
 
     }
 }
