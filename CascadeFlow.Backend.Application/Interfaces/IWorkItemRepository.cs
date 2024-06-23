@@ -9,6 +9,7 @@ namespace CascadeFlow.Backend.Application.Interfaces
 {
     public interface IWorkItemRepository : IGenericRepository<WorkItem>
     {
-
+        Task<IReadOnlyList<WorkItem>> GetAllByProjectIdAsync(Guid projectId);
+        Task<IReadOnlyList<WorkItem>> GetTopLevelByProjectIdAsync(Guid projectId);
     }
 }

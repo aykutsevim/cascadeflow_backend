@@ -17,6 +17,17 @@ namespace CascadeFlow.Backend.WebApi.Services
             return await unitOfWork.WorkItems.GetAllAsync();
         }
 
+        public async Task<IReadOnlyList<WorkItem>> GetAllWorkItemsByProjectIdAsync(Guid projectId)
+        {
+            return await unitOfWork.WorkItems.GetAllByProjectIdAsync(projectId);
+        }
+
+        public async Task<IReadOnlyList<WorkItem>> GetTopLevelWorkItemsByProjectIdAsync(Guid projectId)
+        {
+            return await unitOfWork.WorkItems.GetTopLevelByProjectIdAsync(projectId);
+        }
+
+
         public async Task<IReadOnlyList<WorkItemState>> GetAllWorkItemStatesAsync()
         {
             return await unitOfWork.WorkItemStates.GetAllAsync();

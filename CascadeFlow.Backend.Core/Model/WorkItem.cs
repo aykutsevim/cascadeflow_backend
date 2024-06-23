@@ -21,5 +21,6 @@ namespace CascadeFlow.Backend.Core.Model // Replace "YourNamespace" with your de
         public int Priority { get; set; }
         public Guid ProjectRef { get; set; }
         public Guid WorkItemRef { get; set; }
+        public int Code { get; set; }
     }
 }

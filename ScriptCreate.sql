@@ -116,6 +116,16 @@ create table project
 alter table project
     owner to postgres;
 
+CREATE OR REPLACE FUNCTION update_workitem_code() RETURNS TRIGGER AS $$
+BEGIN
+    -- Check the maximum code for the current projectref
+    SELECT COALESCE(MAX(code), 0) + 1 INTO NEW.code FROM workitem
+    WHERE projectref = NEW.projectref;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
 
 
 create table public.workitem
@@ -138,9 +148,19 @@ create table public.workitem
             references public.project,
     workitemref      uuid
         constraint workitem_workitem_id_fk
-            references public.workitem
+            references public.workitem,
+    code             integer
 );
 
 alter table public.workitem
     owner to postgres;
 
+create trigger set_code_before_insert
+    before insert
+    on public.workitem
+    for each row
+execute procedure public.update_workitem_code();
+
+
+alter table public.workitem
+    owner to postgres;
