@@ -122,6 +122,16 @@ namespace CascadeFlow.Backend.Infrastructure.Repository.Postgresql
             }
         }
 
+        public async Task<IReadOnlyList<WorkItem>> GetByParentWorkItemIdAsync(Guid parentId)
+        {
+            var sql = $"SELECT * FROM {TABLE_NAME} WHERE workitemref = @parentId";
+            using (var connection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Open();
+                var result = await connection.QueryAsync<WorkItem>(sql, new { parentId = parentId });
+                return result.ToList();
+            }
+        }
 
     }
 }
