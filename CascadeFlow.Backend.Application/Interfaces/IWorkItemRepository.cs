@@ -11,6 +11,6 @@ namespace CascadeFlow.Backend.Application.Interfaces
     {
         Task<IReadOnlyList<WorkItem>> GetAllByProjectIdAsync(Guid projectId);
         Task<IReadOnlyList<WorkItem>> GetTopLevelByProjectIdAsync(Guid projectId);
-        Task<IReadOnlyList<WorkItem>> GetByParentWorkItemIdAsync(Guid parentId);
+        Task<IReadOnlyList<WorkItem>> GetByParentWorkItemIdAsync(Guid parentWorkItemId);
     }
 }

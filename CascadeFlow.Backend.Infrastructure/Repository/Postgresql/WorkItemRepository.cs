@@ -85,12 +85,12 @@ namespace CascadeFlow.Backend.Infrastructure.Repository.Postgresql
             var sql = $"SELECT {TABLE_NAME}.*, {TABLE_NAME_TYPE}.workitemtypename, {TABLE_NAME_STATE}.workitemstatename  FROM {TABLE_NAME} "
                 + $" JOIN {TABLE_NAME_TYPE} ON {TABLE_NAME}.workitemtyperef = {TABLE_NAME_TYPE}.Id"
                 + $" JOIN {TABLE_NAME_STATE} ON {TABLE_NAME}.workitemstateref = {TABLE_NAME_STATE}.Id"
-                + $" WHERE {TABLE_NAME}.projectref = '{projectId}'";
+                + $" WHERE {TABLE_NAME}.projectref = @projectId";
 
             using var connection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection"));
             connection.Open();
 
-            var result = await connection.QueryAsync<WorkItem>(sql);
+            var result = await connection.QueryAsync<WorkItem>(sql, new { projectId });
 
             return result.ToList();
         }
@@ -100,16 +100,15 @@ namespace CascadeFlow.Backend.Infrastructure.Repository.Postgresql
             var sql = $"SELECT {TABLE_NAME}.*, {TABLE_NAME_TYPE}.workitemtypename, {TABLE_NAME_STATE}.workitemstatename  FROM {TABLE_NAME} "
                 + $" JOIN {TABLE_NAME_TYPE} ON {TABLE_NAME}.workitemtyperef = {TABLE_NAME_TYPE}.Id"
                 + $" JOIN {TABLE_NAME_STATE} ON {TABLE_NAME}.workitemstateref = {TABLE_NAME_STATE}.Id"
-                + $" WHERE {TABLE_NAME}.projectref = '{projectId}' AND {TABLE_NAME}.workitemref is null";
+                + $" WHERE {TABLE_NAME}.projectref = @projectId AND {TABLE_NAME}.workitemref is null";
 
             using var connection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection"));
             connection.Open();
 
-            var result = await connection.QueryAsync<WorkItem>(sql);
+            var result = await connection.QueryAsync<WorkItem>(sql, new { projectId });
 
             return result.ToList();
         }
-
 
         public async Task<WorkItem> GetByIdAsync(Guid id)
         {
@@ -122,16 +121,26 @@ namespace CascadeFlow.Backend.Infrastructure.Repository.Postgresql
             }
         }
 
-        public async Task<IReadOnlyList<WorkItem>> GetByParentWorkItemIdAsync(Guid parentId)
+        public async Task<IReadOnlyList<WorkItem>> GetByParentWorkItemIdAsync(Guid parentWorkItemId)
         {
-            var sql = $"SELECT * FROM {TABLE_NAME} WHERE workitemref = @parentId";
+            var sql = $"SELECT * FROM {TABLE_NAME} WHERE workitemref = @parentWorkItemId";
             using (var connection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection")))
             {
                 connection.Open();
-                var result = await connection.QueryAsync<WorkItem>(sql, new { parentId = parentId });
+                var result = await connection.QueryAsync<WorkItem>(sql, new { parentWorkItemId });
                 return result.ToList();
             }
         }
 
+        public async Task<IReadOnlyList<WorkItem>> GetByProjectAndCodeAsync(Guid projectId, int code)
+        {
+            var sql = $"SELECT * FROM {TABLE_NAME} WHERE projectref = @projectId";
+            using (var connection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Open();
+                var result = await connection.QueryAsync<WorkItem>(sql, new { projectId, code });
+                return result.ToList();
+            }
+        }
     }
 }
