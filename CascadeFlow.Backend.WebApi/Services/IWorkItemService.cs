@@ -9,5 +9,7 @@ namespace CascadeFlow.Backend.WebApi.Services
         Task<IReadOnlyList<WorkItem>> GetAllWorkItemsAsync();
         Task<IReadOnlyList<WorkItem>> GetAllWorkItemsByProjectIdAsync(Guid projectId);
         Task<IReadOnlyList<WorkItem>> GetTopLevelWorkItemsByProjectIdAsync(Guid projectId);
+        Task<IReadOnlyList<WorkItem>> GetByParentWorkItemIdAsync(Guid parentWorkItemId);
+        Task<IReadOnlyList<WorkItem>> GetByProjectAndCodeAsync(Guid projectId, int code);
     }
 }
