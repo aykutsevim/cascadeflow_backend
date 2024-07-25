@@ -110,6 +110,27 @@ namespace CascadeFlow.Backend.Infrastructure.Repository.Postgresql
             return result.ToList();
         }
 
+        public async Task<IReadOnlyList<WorkItem>> GetTopLevelByProjectIdWithExistChildrenAsync(Guid projectId)
+        {
+            var sql = $"SELECT COUNT(1) FROM {TABLE_NAME} w " +
+                        $"WHERE w.workitemref = @parentId ";
+
+            var result = await GetTopLevelByProjectIdAsync(projectId);
+
+            using var connection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection"));
+            connection.Open();
+
+            foreach (var item in result)
+            {
+                var count = await connection.ExecuteScalarAsync<int>(sql, new { parentId = item.Id });
+                item.hasChildren = count > 0;
+            }
+
+            return result.ToList();
+        }
+
+
+
         public async Task<WorkItem> GetByIdAsync(Guid id)
         {
             var sql = $"SELECT * FROM {TABLE_NAME} WHERE id = @Id";

@@ -38,6 +38,13 @@ namespace CascadeFlow.Backend.WebApi.Controllers
             return Ok(workItems);
         }
 
+        [HttpGet("project/{projectId}/toplevel/existchildren")]
+        public async Task<ActionResult<IReadOnlyList<WorkItem>>> GetTopLevelByProjectIdWithExistChildren(Guid projectId)
+        {
+            var workItems = await workItemService.GetTopLevelByProjectIdWithExistChildrenAsync(projectId);
+            return Ok(workItems);
+        }
+
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<WorkItemType>>> GetAllWorkItemTypes()
         {

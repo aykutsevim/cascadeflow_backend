@@ -22,5 +22,6 @@ namespace CascadeFlow.Backend.Core.Model // Replace "YourNamespace" with your de
         public Guid ProjectRef { get; set; }
         public Guid WorkItemRef { get; set; }
         public int Code { get; set; }
-    }
+        public bool hasChildren { get; set; }
+}
 }
