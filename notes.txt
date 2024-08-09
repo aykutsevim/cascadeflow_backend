@@ -1,0 +1,22 @@
+
+Docker Notes:
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+brew cask install docker
+docker buildx build --platform linux/amd64  -t market-price-service-container .
+docker run -d market-price-service-container
+docker run -it market-price-service-container
+docker logs <container_id>
+docker restart  <container_id>
+docker kill   <container_id>
+docker ps -a
+docker exec -it <container_id> bash
+docker login
+docker run -p 80:80 -d market-service-image
+docker inspect  <container_id>
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+docker run -d --name redis-stack-server -p 6379:6379 redis/redis-stack-server:latest
+docker tag market-price-service-container aykutsevim/market-price-service-container:0.0.1
+docker push aykutsevim/market-price-service-container:0.0.1
+docker pull aykutsevim/market-price-service-container:0.0.1
